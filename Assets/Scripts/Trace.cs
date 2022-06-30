@@ -4,12 +4,23 @@ using UnityEngine;
 
 public class Trace : MonoBehaviour
 {
+    [SerializeField] private GameObject bullet;
+    [SerializeField] private GameObject bulletPosL;
+    [SerializeField] private GameObject bulletPosR;
+
+    private float nextFire = 0.0f;
+    [SerializeField] private float fireRate = 0.5f;
+
     [SerializeField] private Transform target;
     [SerializeField] private float speed;
     [SerializeField] private float rotateSpeed;
     [SerializeField] private float minDist = 80f;
     [SerializeField] private float shootRange = 120f;
 
+    private void shoot(Transform t)
+    {
+        Instantiate(bullet, t.position, Quaternion.LookRotation(transform.forward));
+    }
 
     void Update()
     {
@@ -23,18 +34,23 @@ public class Trace : MonoBehaviour
         }
         else
         {
-            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 90, 0), Time.deltaTime * rotateSpeed);
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, Random.Range(80, 100), 0), Time.deltaTime * rotateSpeed);
         }
+
         transform.position += transform.forward * Time.deltaTime * speed;
 
-        Debug.DrawRay(transform.position, transform.forward * 100, Color.green);
-
-        if (Physics.Raycast(transform.position, transform.forward * shootRange, out RaycastHit hit))
+        //GOtta ignore other plaeness
+        if (Physics.Raycast(bulletPosL.transform.position, transform.forward * shootRange, out RaycastHit hit))
         {
-            if (hit.transform.CompareTag("HitMark"))
+            
+        
+            if (hit.transform.CompareTag("HitMark") && Time.time > nextFire)
             {
-                Debug.Log("shoot");
+                
+                nextFire = Time.time + fireRate;
+                shoot(bulletPosL.transform);
+                shoot(bulletPosR.transform);
             }
-        }   
+        }
     }
 }

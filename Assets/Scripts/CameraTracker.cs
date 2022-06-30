@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class CameraTracker : MonoBehaviour
 {
+    [SerializeField] private Camera main;
+    [SerializeField] private Camera bomb;
+
     public GameObject player;
     public Vector3 offset;
 
@@ -12,6 +15,20 @@ public class CameraTracker : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        transform.position = player.transform.position + offset;   
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            if (main.enabled == false)
+            {
+                main.enabled = true;
+                bomb.enabled = false;
+            }
+            else
+            {
+                main.enabled = false;
+                bomb.enabled = true;
+            }
+            
+        }
+        main.transform.position = player.transform.position + offset;   
     }
 }
