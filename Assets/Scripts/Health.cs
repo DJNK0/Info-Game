@@ -7,6 +7,8 @@ public class Health : MonoBehaviour
 {
     [SerializeField] private int startHealth = 20;
     [SerializeField] private HealthBar healthbar;
+    [SerializeField] private GameObject explosion;
+    [SerializeField]
 
     private int health;
 
@@ -20,6 +22,15 @@ public class Health : MonoBehaviour
     {
         health -= dmg;
         healthbar.UpdateHealth((float)health / (float)startHealth);
+        if(health == 0)
+        {
+            GameObject expl = Instantiate(explosion, transform.position, Quaternion.identity) as GameObject;
+            Destroy(gameObject);
+
+            Destroy(expl, 1);
+            
+
+        }
     }
 
     private void OnTriggerEnter(Collider col)

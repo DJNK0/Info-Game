@@ -6,6 +6,7 @@ TagManager:
   tags:
   - ' hitMarker'
   - HitMark
+  - bomb
   layers:
   - Default
   - TransparentFX

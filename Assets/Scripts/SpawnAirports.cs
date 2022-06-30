@@ -14,6 +14,7 @@ public class SpawnAirports : MonoBehaviour
     {
         if (Time.time > nextSpawn)
         {
+            Debug.Log("spawning");
             nextSpawn = Time.time + spawnRate;
             Vector3 airportPos = airports[Random.Range(0, airports.Length)];
             Vector3 spawnPos = new Vector3(airportPos.x, airportPos.y, airportPos.z);
