@@ -335,7 +335,7 @@ GameObject:
   - component: {fileID: 4355001094282300639}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -376,12 +376,13 @@ MonoBehaviour:
   bullet: {fileID: 6830983946879309128, guid: 1de782927c2b9444db385ba95578d551, type: 3}
   bulletPosL: {fileID: 8509082825752856703}
   bulletPosR: {fileID: 8509082826249114404}
-  fireRate: 0.25
+  fireRate: 0.15
   target: {fileID: 5537685492609615235, guid: c1c75da07ca27d34abda89218476ece0, type: 3}
-  speed: 50
+  speed: 60
   rotateSpeed: 0.5
-  minDist: 80
+  minDist: 50
   shootRange: 600
+  GameMng: {fileID: 4518076729189137918, guid: f3e9a70e69202344fa9aba660c38b141, type: 3}
 --- !u!114 &8509082825295835741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -397,6 +398,7 @@ MonoBehaviour:
   startHealth: 20
   healthbar: {fileID: 8509082825227316603}
   explosion: {fileID: 8868391215686957020, guid: 0fe38cadbd1273f43a103839cd59f493, type: 3}
+  GameMng: {fileID: 4518076729189137918, guid: f3e9a70e69202344fa9aba660c38b141, type: 3}
 --- !u!65 &-2069192508701009499
 BoxCollider:
   m_ObjectHideFlags: 0

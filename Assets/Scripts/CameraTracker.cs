@@ -7,10 +7,22 @@ public class CameraTracker : MonoBehaviour
     [SerializeField] private Camera main;
     [SerializeField] private Camera bomb;
 
+    public GameObject GameMng;
+    private GameManage game;
+
     public GameObject player;
     public Vector3 offset;
 
-    
+    private void Start()
+    {
+        main.enabled = true;
+       
+        
+        game = GameMng.GetComponent<GameManage>();
+        
+        bomb.enabled = false;
+    }
+
 
     // Update is called once per frame
     void LateUpdate()
@@ -29,6 +41,10 @@ public class CameraTracker : MonoBehaviour
             }
             
         }
-        main.transform.position = player.transform.position + offset;   
+        if(game.playerAlive == true)
+        {
+            main.transform.position = player.transform.position + offset;
+        }
+       
     }
 }

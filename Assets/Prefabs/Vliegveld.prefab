@@ -582,7 +582,7 @@ GameObject:
   - component: {fileID: -2057055432652697247}
   m_Layer: 0
   m_Name: Vliegveld
-  m_TagString: Untagged
+  m_TagString: airport
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -645,8 +645,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 29.190958, y: 14.99106, z: 49.120842}
-  m_Center: {x: 4.752283, y: 6.9955564, z: 2.2128832}
+  m_Size: {x: 11.995239, y: 11.462812, z: 25.628025}
+  m_Center: {x: 6.4651656, y: 5.231433, z: 1.9272401}
 --- !u!114 &-3118782486124416163
 MonoBehaviour:
   m_ObjectHideFlags: 0

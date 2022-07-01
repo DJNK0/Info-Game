@@ -17,6 +17,13 @@ public class Trace : MonoBehaviour
     [SerializeField] private float minDist = 80f;
     [SerializeField] private float shootRange = 120f;
 
+    public GameObject GameMng;
+    private GameManage game;
+
+    private void Start()
+    {
+        game = GameMng.GetComponent<GameManage>();
+    }
     private void shoot(Transform t)
     {
         Instantiate(bullet, t.position, Quaternion.LookRotation(transform.forward));
@@ -24,22 +31,22 @@ public class Trace : MonoBehaviour
 
     void Update()
     {
-        
-
-        if (Vector3.Distance(transform.position, target.position) >= minDist)
+        if (game.playerAlive == true)
         {
-            Vector3 direction = target.position - transform.position;
-            Quaternion targetRot = Quaternion.LookRotation(direction);
-            transform.rotation = Quaternion.Lerp(transform.rotation, targetRot, rotateSpeed * Time.deltaTime);
-        }
-        else
-        {
-            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, Random.Range(80, 100), 0), Time.deltaTime * rotateSpeed);
+            if (Vector3.Distance(transform.position, target.position) >= minDist)
+            {
+                Vector3 direction = target.position - transform.position;
+                Quaternion targetRot = Quaternion.LookRotation(direction);
+                transform.rotation = Quaternion.Lerp(transform.rotation, targetRot, rotateSpeed * Time.deltaTime);
+            }
+            else
+            {
+                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, Random.Range(80, 100), 0), Time.deltaTime * rotateSpeed);
+            }
         }
 
         transform.position += transform.forward * Time.deltaTime * speed;
 
-        //GOtta ignore other plaeness
         if (Physics.Raycast(bulletPosL.transform.position, transform.forward * shootRange, out RaycastHit hit))
         {
             
